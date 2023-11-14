@@ -64,34 +64,40 @@
 
         private static void UploadFile(string defaultFile, string[] argument)
         {
-            // TODO: System.IO.FileNotFoundException                    
-            if (argument.Length == 2)
+            try
             {
-                using (StreamReader sr = new StreamReader(argument[1]))
+                if (argument.Length == 2)
                 {
-                    dictionary = new List<SweEngGloss>(); // Empty it!
-                    string line = sr.ReadLine();
-                    while (line != null)
+                    using (StreamReader sr = new StreamReader(argument[1]))
                     {
-                        SweEngGloss gloss = new SweEngGloss(line);
-                        dictionary.Add(gloss);
-                        line = sr.ReadLine();
+                        dictionary = new List<SweEngGloss>(); // Empty it!
+                        string line = sr.ReadLine();
+                        while (line != null)
+                        {
+                            SweEngGloss gloss = new SweEngGloss(line);
+                            dictionary.Add(gloss);
+                            line = sr.ReadLine();
+                        }
+                    }
+                }
+                else if (argument.Length == 1)
+                {
+                    using (StreamReader sr = new StreamReader(defaultFile))
+                    {
+                        dictionary = new List<SweEngGloss>(); // Empty it!
+                        string line = sr.ReadLine();
+                        while (line != null)
+                        {
+                            SweEngGloss gloss = new SweEngGloss(line);
+                            dictionary.Add(gloss);
+                            line = sr.ReadLine();
+                        }
                     }
                 }
             }
-            else if (argument.Length == 1)
+            catch (System.IO.FileNotFoundException) 
             {
-                using (StreamReader sr = new StreamReader(defaultFile))
-                {
-                    dictionary = new List<SweEngGloss>(); // Empty it!
-                    string line = sr.ReadLine();
-                    while (line != null)
-                    {
-                        SweEngGloss gloss = new SweEngGloss(line);
-                        dictionary.Add(gloss);
-                        line = sr.ReadLine();
-                    }
-                }
+                Console.WriteLine("File could not be found!");
             }
         }
 
