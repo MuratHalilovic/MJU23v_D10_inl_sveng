@@ -18,7 +18,7 @@
         }
         static void Main(string[] args)
         {
-            string defaultFile = "..\\..\\..\\dict\\sweeng.lis";
+            string defaultFile = "../../Programmering/MJU23v_D10_inl_sveng/dict/sweeng.lis";
             Console.WriteLine("Welcome to the dictionary app!");
             do
             {
@@ -28,9 +28,11 @@
                 if (command == "quit")
                 {
                     Console.WriteLine("Goodbye!");
+                    //FIXME quit program
                 }
                 else if (command == "load")
                 {
+                    // TODO: System.IO.FileNotFoundException                    
                     if(argument.Length == 2)
                     {
                         using (StreamReader sr = new StreamReader(argument[1]))
@@ -62,6 +64,7 @@
                 }
                 else if (command == "list")
                 {
+                    //TODO: System.NullReferenceException
                     foreach(SweEngGloss gloss in dictionary)
                     {
                         Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
@@ -84,6 +87,7 @@
                 }
                 else if (command == "delete")
                 {
+                    // TODO: When wrong word: System.ArgumentOutOfRangeException
                     if (argument.Length == 3)
                     {
                         int index = -1;
@@ -112,6 +116,7 @@
                 }
                 else if (command == "translate")
                 {
+                    // TODO: when no word: System.NullReferenceException
                     if (argument.Length == 2)
                     {
                         foreach(SweEngGloss gloss in dictionary)
