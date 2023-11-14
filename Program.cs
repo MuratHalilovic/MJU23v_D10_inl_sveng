@@ -103,7 +103,6 @@
 
         private static void PrintListWords()
         {
-            //TODO: System.NullReferenceException
             try
             {
                 foreach (SweEngGloss gloss in dictionary)
@@ -111,7 +110,7 @@
                     Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
                 }
             }
-            catch (System.NullReferenceException) 
+            catch (System.NullReferenceException)
             {
                 Console.WriteLine("Nothing to list, upload file!");
             }
@@ -136,31 +135,38 @@
         private static void DeleteWord(string[] argument) // Broke out DeleteWord
         {
             // TODO: When wrong word: System.ArgumentOutOfRangeException
-            if (argument.Length == 3)
+            try
             {
-                int foundWord = -1;
-                for (int i = 0; i < dictionary.Count; i++)
+                if (argument.Length == 3)
                 {
-                    SweEngGloss gloss = dictionary[i];
-                    if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
-                        foundWord = i;
+                    int foundWord = -1;
+                    for (int i = 0; i < dictionary.Count; i++)
+                    {
+                        SweEngGloss gloss = dictionary[i];
+                        if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
+                            foundWord = i;
+                    }
+                    dictionary.RemoveAt(foundWord);
                 }
-                dictionary.RemoveAt(foundWord);
+                else if (argument.Length == 1)
+                {
+                    Console.WriteLine("Write word in Swedish: ");
+                    string s = Console.ReadLine();
+                    Console.Write("Write word in English: ");
+                    string e = Console.ReadLine();
+                    int foundWord = -1;
+                    for (int i = 0; i < dictionary.Count; i++)
+                    {
+                        SweEngGloss gloss = dictionary[i];
+                        if (gloss.word_swe == s && gloss.word_eng == e)
+                            foundWord = i;
+                    }
+                    dictionary.RemoveAt(foundWord);
+                }
             }
-            else if (argument.Length == 1)
+            catch (System.ArgumentOutOfRangeException)
             {
-                Console.WriteLine("Write word in Swedish: ");
-                string s = Console.ReadLine();
-                Console.Write("Write word in English: ");
-                string e = Console.ReadLine();
-                int foundWord = -1;
-                for (int i = 0; i < dictionary.Count; i++)
-                {
-                    SweEngGloss gloss = dictionary[i];
-                    if (gloss.word_swe == s && gloss.word_eng == e)
-                        foundWord = i;
-                }
-                dictionary.RemoveAt(foundWord);
+                Console.WriteLine("Felaktig inmatning, försök igen!");
             }
         }
 
