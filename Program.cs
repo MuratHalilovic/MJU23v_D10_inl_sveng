@@ -90,14 +90,14 @@
                     // TODO: When wrong word: System.ArgumentOutOfRangeException
                     if (argument.Length == 3)
                     {
-                        int index = -1;
+                        int foundWord = -1;
                         for (int i = 0; i < dictionary.Count; i++)
                         {
                             SweEngGloss gloss = dictionary[i];
                             if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
-                                index = i;
+                                foundWord = i;
                         }
-                        dictionary.RemoveAt(index);
+                        dictionary.RemoveAt(foundWord);
                     }
                     else if (argument.Length == 1)
                     {
@@ -105,14 +105,14 @@
                         string s = Console.ReadLine();
                         Console.Write("Write word in English: ");
                         string e = Console.ReadLine();
-                        int index = -1;
+                        int foundWord = -1;
                         for (int i = 0; i < dictionary.Count; i++)
                         {
                             SweEngGloss gloss = dictionary[i];
                             if (gloss.word_swe == s && gloss.word_eng == e)
-                                index = i;
+                                foundWord = i;
                         }
-                        dictionary.RemoveAt(index);
+                        dictionary.RemoveAt(foundWord);
                     }
                 }
                 else if (command == "translate")
@@ -131,12 +131,12 @@
                     else if (argument.Length == 1)
                     {
                         Console.WriteLine("Write word to be translated: ");
-                        string s = Console.ReadLine();
+                        string wordToTranslate = Console.ReadLine();
                         foreach (SweEngGloss gloss in dictionary)
                         {
-                            if (gloss.word_swe == s)
+                            if (gloss.word_swe == wordToTranslate)
                                 Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                            if (gloss.word_eng == s)
+                            if (gloss.word_eng == wordToTranslate)
                                 Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
                         }
                     }
