@@ -95,7 +95,7 @@
                     }
                 }
             }
-            catch (System.IO.FileNotFoundException) 
+            catch (System.IO.FileNotFoundException)
             {
                 Console.WriteLine("File could not be found!");
             }
@@ -104,9 +104,16 @@
         private static void PrintListWords()
         {
             //TODO: System.NullReferenceException
-            foreach (SweEngGloss gloss in dictionary)
+            try
             {
-                Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+                foreach (SweEngGloss gloss in dictionary)
+                {
+                    Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+                }
+            }
+            catch (System.NullReferenceException) 
+            {
+                Console.WriteLine("Nothing to list, upload file!");
             }
         }
 
