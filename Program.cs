@@ -64,11 +64,7 @@
                 }
                 else if (command == "list")
                 {
-                    //TODO: System.NullReferenceException
-                    foreach (SweEngGloss gloss in dictionary)
-                    {
-                        Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
-                    }
+                    PrintListWords();
                 }
                 else if (command == "new")
                 {
@@ -92,6 +88,15 @@
                 }
             }
             while (true);
+        }
+
+        private static void PrintListWords()
+        {
+            //TODO: System.NullReferenceException
+            foreach (SweEngGloss gloss in dictionary)
+            {
+                Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
+            }
         }
 
         private static void AddNewWord(string[] argument)
