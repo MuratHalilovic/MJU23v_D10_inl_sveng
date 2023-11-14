@@ -105,7 +105,7 @@
             while (true);
         }
 
-        private static void DeleteWord(string[] argument)
+        private static void DeleteWord(string[] argument) // Broke out DeleteWord
         {
             // TODO: When wrong word: System.ArgumentOutOfRangeException
             if (argument.Length == 3)
