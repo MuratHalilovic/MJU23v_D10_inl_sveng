@@ -33,7 +33,7 @@
                 else if (command == "load")
                 {
                     // TODO: System.IO.FileNotFoundException                    
-                    if(argument.Length == 2)
+                    if (argument.Length == 2)
                     {
                         using (StreamReader sr = new StreamReader(argument[1]))
                         {
@@ -47,7 +47,7 @@
                             }
                         }
                     }
-                    else if(argument.Length == 1)
+                    else if (argument.Length == 1)
                     {
                         using (StreamReader sr = new StreamReader(defaultFile))
                         {
@@ -65,7 +65,7 @@
                 else if (command == "list")
                 {
                     //TODO: System.NullReferenceException
-                    foreach(SweEngGloss gloss in dictionary)
+                    foreach (SweEngGloss gloss in dictionary)
                     {
                         Console.WriteLine($"{gloss.word_swe,-10}  - {gloss.word_eng,-10}");
                     }
@@ -76,7 +76,7 @@
                     {
                         dictionary.Add(new SweEngGloss(argument[1], argument[2]));
                     }
-                    else if(argument.Length == 1)
+                    else if (argument.Length == 1)
                     {
                         Console.WriteLine("Write word in Swedish: ");
                         string s = Console.ReadLine();
@@ -91,7 +91,8 @@
                     if (argument.Length == 3)
                     {
                         int index = -1;
-                        for (int i = 0; i < dictionary.Count; i++) {
+                        for (int i = 0; i < dictionary.Count; i++)
+                        {
                             SweEngGloss gloss = dictionary[i];
                             if (gloss.word_swe == argument[1] && gloss.word_eng == argument[2])
                                 index = i;
@@ -119,7 +120,7 @@
                     // TODO: when no word: System.NullReferenceException
                     if (argument.Length == 2)
                     {
-                        foreach(SweEngGloss gloss in dictionary)
+                        foreach (SweEngGloss gloss in dictionary)
                         {
                             if (gloss.word_swe == argument[1])
                                 Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
@@ -139,6 +140,20 @@
                                 Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
                         }
                     }
+                }
+                else if (command == "help")
+                {
+                    Console.WriteLine("Avaliable commands: ");
+                    Console.WriteLine("  delete                      - empty the contact list");
+                    Console.WriteLine("  delete /sweword/ /engword/  - delete a person");
+                    Console.WriteLine("  list                        - list the contact list");
+                    Console.WriteLine("  load                        - load contact list data from the file address.lis");
+                    Console.WriteLine("  new                         - create new person");
+                    Console.WriteLine("  new /sweword/ /engword/     - create new person with personal name and surname");
+                    Console.WriteLine("  translate                   - translates a word");
+                    Console.WriteLine("  translate /word/            - create new person");
+                    Console.WriteLine("  quit                        - quit the program");
+                    Console.WriteLine();
                 }
                 else
                 {
