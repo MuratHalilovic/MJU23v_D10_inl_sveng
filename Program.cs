@@ -134,7 +134,6 @@
 
         private static void DeleteWord(string[] argument) // Broke out DeleteWord
         {
-            // TODO: When wrong word: System.ArgumentOutOfRangeException
             try
             {
                 if (argument.Length == 3)
@@ -166,34 +165,40 @@
             }
             catch (System.ArgumentOutOfRangeException)
             {
-                Console.WriteLine("Felaktig inmatning, försök igen!");
+                Console.WriteLine("Wrong input, try again!");
             }
         }
 
         private static void TranslateWord(string[] argument)
         {
-            // TODO: when no word: System.NullReferenceException
-            if (argument.Length == 2)
+            try
             {
-                foreach (SweEngGloss gloss in dictionary)
+                if (argument.Length == 2)
                 {
-                    if (gloss.word_swe == argument[1])
-                        Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                    if (gloss.word_eng == argument[1])
-                        Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
+                    foreach (SweEngGloss gloss in dictionary)
+                    {
+                        if (gloss.word_swe == argument[1])
+                            Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
+                        if (gloss.word_eng == argument[1])
+                            Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
+                    }
+                }
+                else if (argument.Length == 1)
+                {
+                    Console.WriteLine("Write word to be translated: ");
+                    string wordToTranslate = Console.ReadLine();
+                    foreach (SweEngGloss gloss in dictionary)
+                    {
+                        if (gloss.word_swe == wordToTranslate)
+                            Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
+                        if (gloss.word_eng == wordToTranslate)
+                            Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
+                    }
                 }
             }
-            else if (argument.Length == 1)
+            catch (System.NullReferenceException)
             {
-                Console.WriteLine("Write word to be translated: ");
-                string wordToTranslate = Console.ReadLine();
-                foreach (SweEngGloss gloss in dictionary)
-                {
-                    if (gloss.word_swe == wordToTranslate)
-                        Console.WriteLine($"English for {gloss.word_swe} is {gloss.word_eng}");
-                    if (gloss.word_eng == wordToTranslate)
-                        Console.WriteLine($"Swedish for {gloss.word_eng} is {gloss.word_swe}");
-                }
+                Console.WriteLine("Empty list!");
             }
         }
 
