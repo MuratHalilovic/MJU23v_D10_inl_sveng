@@ -28,7 +28,7 @@
                 if (command == "quit")
                 {
                     Console.WriteLine("Goodbye!");
-                    //FIXME quit program
+                    break;
                 }
                 else if (command == "load")
                 {
