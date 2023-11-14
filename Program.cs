@@ -72,18 +72,7 @@
                 }
                 else if (command == "new")
                 {
-                    if (argument.Length == 3)
-                    {
-                        dictionary.Add(new SweEngGloss(argument[1], argument[2]));
-                    }
-                    else if (argument.Length == 1)
-                    {
-                        Console.WriteLine("Write word in Swedish: ");
-                        string s = Console.ReadLine();
-                        Console.Write("Write word in English: ");
-                        string e = Console.ReadLine();
-                        dictionary.Add(new SweEngGloss(s, e));
-                    }
+                    AddNewWord(argument);
                 }
                 else if (command == "delete")
                 {
@@ -103,6 +92,22 @@
                 }
             }
             while (true);
+        }
+
+        private static void AddNewWord(string[] argument)
+        {
+            if (argument.Length == 3)
+            {
+                dictionary.Add(new SweEngGloss(argument[1], argument[2]));
+            }
+            else if (argument.Length == 1)
+            {
+                Console.WriteLine("Write word in Swedish: ");
+                string s = Console.ReadLine();
+                Console.Write("Write word in English: ");
+                string e = Console.ReadLine();
+                dictionary.Add(new SweEngGloss(s, e));
+            }
         }
 
         private static void DeleteWord(string[] argument) // Broke out DeleteWord
