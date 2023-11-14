@@ -143,17 +143,7 @@
                 }
                 else if (command == "help")
                 {
-                    Console.WriteLine("Avaliable commands: ");
-                    Console.WriteLine("  delete                      - empty the contact list");
-                    Console.WriteLine("  delete /sweword/ /engword/  - delete a person");
-                    Console.WriteLine("  list                        - list the contact list");
-                    Console.WriteLine("  load                        - load contact list data from the file address.lis");
-                    Console.WriteLine("  new                         - create new person");
-                    Console.WriteLine("  new /sweword/ /engword/     - create new person with personal name and surname");
-                    Console.WriteLine("  translate                   - translates a word");
-                    Console.WriteLine("  translate /word/            - create new person");
-                    Console.WriteLine("  quit                        - quit the program");
-                    Console.WriteLine();
+                    PrintHelpMessage();
                 }
                 else
                 {
@@ -161,6 +151,21 @@
                 }
             }
             while (true);
+        }
+
+        private static void PrintHelpMessage()
+        {
+            Console.WriteLine("Avaliable commands: ");
+            Console.WriteLine("  delete                      - empty the contact list");
+            Console.WriteLine("  delete /sweword/ /engword/  - delete a person");
+            Console.WriteLine("  list                        - list the contact list");
+            Console.WriteLine("  load                        - load contact list data from the file address.lis");
+            Console.WriteLine("  new                         - create new person");
+            Console.WriteLine("  new /sweword/ /engword/     - create new person with personal name and surname");
+            Console.WriteLine("  translate                   - translates a word");
+            Console.WriteLine("  translate /word/            - create new person");
+            Console.WriteLine("  quit                        - quit the program");
+            Console.WriteLine();
         }
     }
 }
